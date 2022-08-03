@@ -8,16 +8,16 @@ public class Spawner : MonoBehaviour
 
     public GameObject[] fruitPrefabs;
 
-    public float minSpawnDelay = 0.25f;
-    public float maxSpawnDelay = 1f;
+    [SerializeField] private float minSpawnDelay = 0.25f;
+    [SerializeField] private float maxSpawnDelay = 1f;
 
-    public float minAngle = -15f;
-    public float maxAngle = 15f;
+    [SerializeField] private float minAngle = -15f;
+    [SerializeField] private float maxAngle = 15f;
 
-    public float minForce = 18f;
-    public float maxForce = 22f;
+    [SerializeField] private float minForce = 18f;
+    [SerializeField] private float maxForce = 22f;
 
-    public float maxLifetime = 5f;
+    [SerializeField] private float maxLifetime = 5f;
 
     private void Awake()
     {
