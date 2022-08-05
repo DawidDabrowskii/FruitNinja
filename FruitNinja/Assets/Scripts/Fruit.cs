@@ -20,6 +20,7 @@ public class Fruit : MonoBehaviour
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
+        FindObjectOfType<GameManager>().IncreaseScore(); // getting access to GameManager from other script/it is public
         whole.SetActive(false);
         sliced.SetActive(true);
 
