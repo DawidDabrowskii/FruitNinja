@@ -11,6 +11,8 @@ public class Fruit : MonoBehaviour
     private Collider fruitCollider;
     private ParticleSystem juiceParticleEffect;
 
+    [SerializeField] private int points = 1;
+
     private void Awake()
     {
         fruitRigidbody = GetComponent<Rigidbody>();
@@ -20,14 +22,18 @@ public class Fruit : MonoBehaviour
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
-        FindObjectOfType<GameManager>().IncreaseScore(); // getting access to GameManager from other script/it is public
+        FindObjectOfType<GameManager>().IncreaseScore(points); // getting access to GameManager from other script/it is public
+        
+        // Disable the whole fruit
         whole.SetActive(false);
         sliced.SetActive(true);
 
+        // Enable the sliced fruit
         fruitCollider.enabled = false;
         juiceParticleEffect.Play(); // play particle effects on Slice
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // angle which we can rotate fruit
+        // Rotate based on the slice angle
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         sliced.transform.rotation = Quaternion.Euler(0f, 0f, angle); // rotation only in Z axes
 
         Rigidbody[] slices = sliced.GetComponentsInChildren<Rigidbody>();
